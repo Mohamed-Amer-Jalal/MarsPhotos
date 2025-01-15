@@ -8,6 +8,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.marsphotos.network.MarsApi
 import kotlinx.coroutines.launch
 
+sealed interface MarsUiState {
+    data class Success(val photos: String) : MarsUiState
+    object Error : MarsUiState
+    object Loading : MarsUiState
+}
+
 class MarsViewModel : ViewModel() {
     var marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
         private set
@@ -26,10 +32,4 @@ class MarsViewModel : ViewModel() {
             }
         }
     }
-}
-
-sealed interface MarsUiState {
-    data class Success(val photos: String) : MarsUiState
-    object Error : MarsUiState
-    object Loading : MarsUiState
 }

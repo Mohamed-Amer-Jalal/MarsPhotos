@@ -22,15 +22,14 @@ import com.example.marsphotos.ui.theme.MarsPhotosTheme
 
 @Composable
 fun HomeScreen(
-    marsUiState: String,
+    marsUiState: MarsUiState,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
 ) {
     when (marsUiState) {
         is MarsUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
         is MarsUiState.Success -> ResultScreen(
-            marsUiState.photos,
-            modifier = modifier.padding(contentPadding.calculateTopPadding()).fillMaxWidth()
+            marsUiState.photos, modifier = modifier.fillMaxWidth()
         )
 
         is MarsUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
