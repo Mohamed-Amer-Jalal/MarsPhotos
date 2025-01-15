@@ -4,8 +4,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.marsphotos.network.MarsApi
+import kotlinx.coroutines.launch
 
-class   MarsViewModel : ViewModel() {
+class MarsViewModel : ViewModel() {
     var marsUiState: String by mutableStateOf("")
         private set
 
@@ -13,7 +16,7 @@ class   MarsViewModel : ViewModel() {
         getMarsPhotos()
     }
 
-    fun getMarsPhotos() {
-        marsUiState = "Set the Mars API status response here!"
+    private fun getMarsPhotos() {
+        viewModelScope.launch { marsUiState = MarsApi.retrofitService.getPhotos() }
     }
 }
