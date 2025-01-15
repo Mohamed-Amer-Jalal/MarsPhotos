@@ -9,7 +9,7 @@ import com.example.marsphotos.network.MarsApi
 import kotlinx.coroutines.launch
 
 class MarsViewModel : ViewModel() {
-    var marsUiState: String by mutableStateOf("")
+    var marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
         private set
 
     init {
@@ -17,6 +17,18 @@ class MarsViewModel : ViewModel() {
     }
 
     private fun getMarsPhotos() {
-        viewModelScope.launch { marsUiState = MarsApi.retrofitService.getPhotos() }
+        viewModelScope.launch {
+            marsUiState = try {
+                MarsUiState.Success(MarsApi.retrofitService.getPhotos())
+            } catch (_: Exception) {
+                MarsUiState.Error
+            }
+        }
     }
+}
+
+sealed interface MarsUiState {
+    data class Success(val photos: String) : MarsUiState
+    object Error : MarsUiState
+    object Loading : MarsUiState
 }
