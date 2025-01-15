@@ -28,8 +28,11 @@ fun HomeScreen(
 ) {
     when (marsUiState) {
         is MarsUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+
         is MarsUiState.Success -> ResultScreen(
-            marsUiState.photos, modifier = modifier.fillMaxWidth().padding(contentPadding)
+            marsUiState.photos, modifier = modifier
+                .fillMaxWidth()
+                .padding(contentPadding)
         )
 
         is MarsUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
