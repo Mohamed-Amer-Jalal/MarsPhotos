@@ -27,7 +27,7 @@ fun MarsPhotosApp(marsViewModel: MarsViewModel = viewModel()) {
         topBar = { MarsTopAppBar(scrollBehavior = scrollBehavior) }
     ) { innerPadding ->
         Surface(modifier = Modifier.fillMaxSize()) {
-            HomeScreen(marsUiState = marsViewModel.marsUiState, contentPadding = innerPadding)
+            HomeScreen(marsUiState = marsViewModel.marsUiState.toString(), contentPadding = innerPadding)
         }
     }
 
