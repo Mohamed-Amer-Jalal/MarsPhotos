@@ -20,14 +20,14 @@ import com.example.marsphotos.ui.screens.MarsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MarsPhotosApp(marsViewModel: MarsViewModel = viewModel()) {
+fun MarsPhotosApp(marsViewModel: MarsViewModel = viewModel(factory = MarsViewModel.Factory)) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = { MarsTopAppBar(scrollBehavior = scrollBehavior) }
-    ) {
+    ) { innerPadding ->
         Surface(modifier = Modifier.fillMaxSize()) {
-            HomeScreen(marsUiState = marsViewModel.marsUiState, contentPadding = it)
+            HomeScreen(marsUiState = marsViewModel.marsUiState, contentPadding = innerPadding)
         }
     }
 }
