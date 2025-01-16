@@ -65,4 +65,5 @@ dependencies {
     implementation(libs.retrofit2.kotlinx.serialization.converter)
     implementation(libs.okhttp)
     testImplementation(libs.kotlinx.coroutines.test)
+    implementation(libs.coil.compose)
 }
