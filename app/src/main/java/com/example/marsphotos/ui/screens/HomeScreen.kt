@@ -5,13 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
@@ -35,9 +35,10 @@ fun HomeScreen(
     marsUiState: MarsUiState,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp),
+    retryAction: () -> Unit,
 ) {
     when (marsUiState) {
-        is MarsUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
+        is MarsUiState.Loading -> LoadingScreen(modifier = modifier)
 
         is MarsUiState.Success -> PhotosGridScreen(
             photos = marsUiState.photos,
@@ -45,7 +46,7 @@ fun HomeScreen(
             contentPadding = contentPadding
         )
 
-        is MarsUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
+        is MarsUiState.Error -> ErrorScreen(retryAction = retryAction, modifier = modifier)
     }
 }
 
@@ -100,7 +101,7 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ErrorScreen(modifier: Modifier = Modifier) {
+fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
@@ -111,6 +112,7 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
             contentDescription = stringResource(R.string.loading_failed)
         )
         Text(text = stringResource(R.string.loading_failed), modifier = Modifier.padding(16.dp))
+        Button(onClick = retryAction) { Text(text = stringResource(R.string.retry)) }
     }
 }
 
@@ -119,5 +121,13 @@ fun ErrorScreen(modifier: Modifier = Modifier) {
 fun ResultScreenPreview() {
     MarsPhotosTheme {
         MarsPhotoCard(photo = MarsPhoto("id", "src"))
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ErrorScreenPreview() {
+    MarsPhotosTheme {
+        ErrorScreen(retryAction = {})
     }
 }
