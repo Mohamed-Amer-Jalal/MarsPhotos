@@ -11,11 +11,10 @@ interface AppContainer {
 }
 
 class DefaultAppContainer : AppContainer {
-    private val baseUrl = "https://android-kotlin-fun-mars-server.appspot.com"
-    private val jsonMediaType = Json.asConverterFactory("application/json".toMediaType())
-
     private val retrofit =
-        Retrofit.Builder().addConverterFactory(jsonMediaType).baseUrl(baseUrl).build()
+        Retrofit.Builder()
+            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .baseUrl("https://android-kotlin-fun-mars-server.appspot.com").build()
 
     private val retrofitService: MarsApiService by lazy { retrofit.create(MarsApiService::class.java) }
 
