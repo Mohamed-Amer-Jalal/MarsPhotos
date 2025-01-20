@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 
 sealed interface MarsUiState {
     data class Success(val photos: List<MarsPhoto>) : MarsUiState
-    data object Error : MarsUiState
+    data class Error(val message: String) : MarsUiState
     data object Loading : MarsUiState
 }
 
@@ -33,7 +33,7 @@ class MarsViewModel(private val marsPhotosRepository: MarsPhotosRepository) : Vi
             marsUiState = try {
                 MarsUiState.Success(photos = marsPhotosRepository.getMarsPhotos())
             } catch (_: Exception) {
-                MarsUiState.Error
+                MarsUiState.Error(message = "Failed to load photos")
             }
         }
     }
