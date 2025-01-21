@@ -14,7 +14,6 @@ import com.example.marsphotos.ui.MarsPhotosApp
 import com.example.marsphotos.ui.theme.MarsPhotosTheme
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
