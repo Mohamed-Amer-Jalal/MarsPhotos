@@ -32,6 +32,10 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     MarsPhotosTheme {
-        MarsPhotosApp()
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            MarsPhotosApp()
+        }
     }
 }
