@@ -22,8 +22,8 @@ sealed interface MarsUiState {
 
 class MarsViewModel(private val marsPhotosRepository: MarsPhotosRepository) : ViewModel() {
 
-    private var _marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
-    val marsUiState: MarsUiState get() = _marsUiState
+    var marsUiState: MarsUiState by mutableStateOf(MarsUiState.Loading)
+        private set
 
     init {
         getMarsPhotos()
@@ -31,7 +31,7 @@ class MarsViewModel(private val marsPhotosRepository: MarsPhotosRepository) : Vi
 
     fun getMarsPhotos() {
         viewModelScope.launch {
-            _marsUiState = try {
+            marsUiState = try {
                 MarsUiState.Success(photos = marsPhotosRepository.getMarsPhotos())
             } catch (_: Exception) {
                 MarsUiState.Error(message = "Failed to load photos")
