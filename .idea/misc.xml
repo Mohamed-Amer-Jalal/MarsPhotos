@@ -1,5 +1,27 @@
 <project version="4">
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="com.example.marsphotos.ui.screens.HomeScreenKt void ErrorScreenPreview()" />
+      <entry_point TYPE="method" FQNAME="com.example.marsphotos.MainActivityKt void GreetingPreview()" />
+      <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/example/marsphotos/ui/screens/HomeScreen.kt" />
+      <entry_point TYPE="file" FQNAME="file://$PROJECT_DIR$/app/src/main/java/com/example/marsphotos/MainActivity.kt" />
+      <entry_point TYPE="field" FQNAME="com.example.marsphotos.data.DefaultAppContainer marsPhotosRepository$delegate" />
+      <entry_point TYPE="field" FQNAME="com.example.marsphotos.ui.screens.MarsViewModel marsUiState$delegate" />
+      <entry_point TYPE="method" FQNAME="com.example.marsphotos.ui.screens.HomeScreenKt void ResultScreenPreview()" />
+      <entry_point TYPE="field" FQNAME="com.example.marsphotos.data.DefaultAppContainer retrofitService$delegate" />
+      <entry_point TYPE="field" FQNAME="com.example.marsphotos.fake.MarsViewModelTest testDispatcher" />
+    </entry_points>
+    <pattern value="com.example.marsphotos.data.DefaultAppContainer" />
+    <pattern value="com.example.marsphotos.MainActivity" />
+    <pattern value="com.example.marsphotos.MarsPhotosApplication" />
+    <pattern value="com.example.marsphotos.ui.screens.MarsViewModel" />
+    <pattern value="com.example.marsphotos.fake.MarsViewModelTest" method="marsViewModel_getMarsPhotos_verifyMarsUiStateSuccess" />
+    <pattern value="com.example.marsphotos.fake.MarsViewModelTest" />
+    <pattern value="com.example.marsphotos.fake.NetworkMarsRepositoryTest" method="networkMarsPhotosRepository_getMarsPhotos_verifyPhotoList" />
+    <pattern value="com.example.marsphotos.fake.NetworkMarsRepositoryTest" />
+    <pattern value="com.example.marsphotos.rules.TestDispatcherRule" />
+    <pattern value="com.example.marsphotos.rules.TestDispatcherRule" method="TestDispatcherRule" />
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="jbr-21" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
