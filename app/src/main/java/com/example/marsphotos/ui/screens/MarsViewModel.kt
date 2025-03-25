@@ -14,6 +14,16 @@ import com.example.marsphotos.data.MarsPhotosRepository
 import com.example.marsphotos.network.MarsPhoto
 import kotlinx.coroutines.launch
 
+/**
+ * يمثل حالات واجهة المستخدم:
+ * - Success: تم تحميل الصور بنجاح.
+ * - Error: حدث خطأ أثناء التحميل.
+ * - Loading: جاري تحميل البيانات.
+ *
+ * يقوم MarsViewModel بجلب الصور عبر Repository باستخدام Coroutines،
+ * ويحدث الحالة بناءً على نتيجة العملية.
+ * كما يوفر Factory لإنشاء المثيل مع حقن التبعيات من التطبيق.
+ */
 sealed interface MarsUiState {
     data class Success(val photos: List<MarsPhoto>) : MarsUiState
     data class Error(val message: String) : MarsUiState

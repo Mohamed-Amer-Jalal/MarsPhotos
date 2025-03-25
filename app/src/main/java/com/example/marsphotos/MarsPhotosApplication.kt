@@ -4,6 +4,9 @@ import android.app.Application
 import com.example.marsphotos.data.AppContainer
 import com.example.marsphotos.data.DefaultAppContainer
 
+/**
+ * التطبيق الرئيسي حيث يتم تهيئة حاوية التبعيات (Dependency Injection) عند بدء التطبيق.
+ */
 class MarsPhotosApplication : Application() {
     lateinit var container: AppContainer
 
